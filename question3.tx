@@ -1,0 +1,23 @@
+
+3.1:
+
+SELECT SUM(PolicyType) FROM Policy;
+
+3.2:
+
+SELECT SUM(TranTypyeId) FROM AccTran;
+
+3.3:
+
+SELECT Account.Id, Account.Name, Policy.Balance
+FROM Account
+INNER JOIN Policy ON Account.Id=Policy.AccountId;
+
+3.4:
+
+SELECT Account.Name, Policy.Id, Policy.Balance, AccTran.Amount
+FROM ((Account
+INNER JOIN Policy ON Account.Id=Policy.AccountId)
+INNER JOIN AccTran ON Policy.Id=AccTran.PolicyId)
+WHERE NOT Policy.Balance=AccTran.Amount
+ORDER BY Name;
